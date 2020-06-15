@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Lobster&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.min.css">
+    <title>Virtua Frontend Internship Test</title>
+  </head>
+  <body>
+    <section class="main">
+      <button id="show-popup-form" class="btn btn-main" onclick="showPopup()">Click me!</button>
+      <!-- Display success message below -->
+    </section>
+    <div class="popup" id="popupWindow">
+     <div class="popup__background" id="popupBackground">
+       <div class="popup__close" onclick="closePopup()">
+        <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
+       </div>
+      <h2>Login</h2>
+      <form action="#" class="login__form">
+       <div class="form__inputs">
+          <div class="popup__input">
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="popup__input">
+            <input type="password" placeholder="Password" required>
+          </div>
+        </div>
+        <div class="rules">
+          <input type="checkbox" id="rules">
+          <label for="rules">I agree to terms & conditions.</label>
+        </div>
+
+          <button>Submit</button>
+       
+      </form>
+     </div>
+    </div>
+    <script src="js/index.min.js" charset="utf-8"></script>
+  </body>
+</html>
