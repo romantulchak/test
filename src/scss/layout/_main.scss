@@ -2,6 +2,8 @@
 $primary-color: #fcaf32;
 $secondary-color: #fc888e;
 $text-color:#9a9a9a;
+$checkbox-width-height: 15px;
+$titels-family: 'Lobster', cursive;
 html,
 body {
   font-family: 'Lato', sans-serif;
@@ -15,15 +17,21 @@ body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
-
+ 
 }
+.success{
+  font-family: $titels-family;
+  display: none;
+  font-size: 40px;
+  font-weight: 400;
+ }
 
 .btn-main {
   appearance: none;
   background: transparent;
   border: 0;
+  font-family: $titels-family;
   cursor: pointer;
-  font-family: 'Lobster', cursive;
   font-size: 42px;
   height: 60px;
   outline: none;
@@ -35,46 +43,21 @@ body {
     transform: scale(1.15);
   }
 }
-.popup{
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  width: 100%;
-  visibility: hidden;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.fadeInUp{
+.password__error_notification{
+  display: none;
   animation-name: fadeInUp;
   animation-duration: 1s;
-  animation-fill-mode: both;
-}
-.fadeInDown{
-  animation-name: fadeInDown;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
+  animation-fill-mode: both; 
+  position: absolute;
+  top: 0;
+  right: 2em;
+  ul{
+    list-style: none;
+    background: #fff;
+    line-height: 1.5;
+    border-radius: 8px;
+    padding: 1em;
 
-@keyframes fadeInUp{
-  0% {
-    transform: translateY(40px);
-}
-100% {
-    transform: translateY(0);
-  }
-}
-@keyframes fadeInDown{
-  0% {
-    transform: translateY(0px);
-}
-100% {
-    transform: translateY(40px);
-    opacity: 0;
-    visibility: hidden;
   }
 }
 
@@ -82,25 +65,28 @@ body {
   position: relative;
   background: white;
   width: 250px;
-  padding: 0em 1em;
-  height: 310px;
+  height: 300px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
     &>h2{
       font-family: Lobster;
-      margin: .5em 0em .5em 0em;
+      margin: 1em 0em .5em 0em;
     }
-
     .popup__close{
       position: absolute;
-      top: -5px;
-      right: -7px;
+      top: -25px;
+      right: -25px;
+      cursor: pointer;
     }
-  
+    #error{
+      color: red;
+      font-size: 13px;
+      margin-top: 1em;
+      text-align: center;
+    }
 }
 .form__inputs{
   .popup__input{
@@ -115,17 +101,20 @@ body {
   
   }
 }
+.popup{
+  border: none;
+  border-radius: 6px;
+
+}
 .login__form{
-
   text-align: center;
-
   label{
     color: #3c3a3a;
     font-family: sans-serif;
     font-size: 14px;
     font-weight: 100;
+    user-select: none;
   }
-
   button{
     border: none;
     width: 100%;
@@ -134,61 +123,104 @@ body {
     outline: none;
     background-color: black;
     color: #fff;
+    position: relative;
     font-weight: 900;
     font-family: Lato;
     cursor: pointer;
     font-size: 12px;
-  &:hover{
-    background: #f2868c;
+    &:disabled{
+      background: silver;
+      cursor: default;
+      &:hover{
+        background: silver;
+      }
+    }
+    &:hover{
+      background: #f2868c;
+    }
   }
-
-  }
-  
-
   .rules{    
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 0.8em 0em 1em 0em;
+    margin: 0.8em 0em 1.5em 0em;
+    input[type=checkbox] {
+      transform: scale(1.2);
+    }
+    input[type=checkbox] {
+      width: 15px;
+      visibility: hidden;
+      height: 15px;
+      margin-right: 10px;
+    }
+    input[type=checkbox]:after {
+      content: " ";
+      background-color: #fff;
+      display: block;
+      color: #000;
+      width: $checkbox-width-height;
+      height: $checkbox-width-height;
+      visibility: visible;
+      border: 1px solid #000;
+    }
+    input[type=checkbox]:checked:after {
+      content: "\2714";
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      width: $checkbox-width-height;
+      height: $checkbox-width-height;
+    }
   }
-
-
-
 }
-
-
-
-/*CUSTOM CHECKBOX
-input[type=checkbox] {
-  transform: scale(1.5);
+.show__success{
+  display: block;
+  animation-name: appear;
+  animation-delay: 1s;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
-
-input[type=checkbox] {
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-  cursor: pointer;
-  font-size: 17px;
-  visibility: hidden;
+.fadeInUp{
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
-
-input[type=checkbox]:after {
-  content: " ";
-  background-color: #fff;
-  display: inline-block;
-  margin-left: 10px;
-  padding-bottom: 5px;
-  color: #00BFF0;
-  width: 22px;
-  height: 25px;
-  visibility: visible;
-  border: 1px solid #00BFF0;
-  padding-left: 3px;
-  border-radius: 5px;
+.fadeInDown{
+  animation-name: fadeInDown;
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
+@keyframes appear{
+  0% {
+    opacity: 0;
+}
+25%{
+  opacity: 0.25;
+}
+50%{
+  opacity: 0.5;
+}
+75%{
 
-input[type=checkbox]:checked:after {
-  content: "\2714";
-  padding: -5px;
-  font-weight: bold;
-}*/
+  opacity: 0.75;
+}
+100% {
+  opacity: 1;
+  }
+}
+@keyframes fadeInUp{
+  0% {
+    transform: translateY(40px);
+}
+100% {
+    transform: translateY(0);
+  }
+}
+@keyframes fadeInDown{
+  0% {
+    transform: translateY(0px);
+}
+100% {
+    transform: translateY(40px);
+  }
+}

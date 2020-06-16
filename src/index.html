@@ -12,33 +12,44 @@
   <body>
     <section class="main">
       <button id="show-popup-form" class="btn btn-main" onclick="showPopup()">Click me!</button>
-      <!-- Display success message below -->
+      <h1 id="success" class="success">Thank you!</h1>
+    
+      <div class="password__error_notification" id="password__notification">
+        <ul>
+          <li>Password must contain at least one uppercase letter</li>
+          <li>Password must contain at least one special symbol like: !@#$%</li>
+          <li>Minimum password length - 6</li>
+          <li>Maximum password length - 16</li>
+          <li>Minimum one number</li>
+          <li>Mininmum one letter</li>
+        </ul>
+      </div>
+
     </section>
-    <div class="popup" id="popupWindow">
+    <dialog class="popup" id="popupWindow">
      <div class="popup__background" id="popupBackground">
        <div class="popup__close" onclick="closePopup()">
         <i class="fa fa-times-circle fa-2x" aria-hidden="true"></i>
        </div>
       <h2>Login</h2>
-      <form action="#" class="login__form">
+      <form class="login__form" id="signUp">
        <div class="form__inputs">
           <div class="popup__input">
-            <input type="email" placeholder="Email" required>
+            <input type="email" name="email" placeholder="Email" required>
           </div>
           <div class="popup__input">
-            <input type="password" placeholder="Password" required>
+            <input type="password" name="password" placeholder="Password" required>
           </div>
         </div>
         <div class="rules">
-          <input type="checkbox" id="rules">
+          <input type="checkbox" class="custom__checkbox" id="rules" onchange="agreeRules()">
           <label for="rules">I agree to terms & conditions.</label>
         </div>
-
-          <button>Submit</button>
-       
+          <button disabled id="formSumbit" type="submit">Submit</button>
       </form>
-     </div>
+      <span id="error"></span>
     </div>
+  </dialog>
     <script src="js/index.min.js" charset="utf-8"></script>
   </body>
 </html>
